@@ -20,7 +20,7 @@ class SupportClientResource extends Resource
 {
     protected static ?string $model = SupportClient::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Phone;
 
     protected static ?string $recordTitleAttribute = 'id';
 
@@ -28,6 +28,8 @@ class SupportClientResource extends Resource
     {
         return SupportClientForm::configure($schema);
     }
+
+ 
 
     public static function infolist(Schema $schema): Schema
     {

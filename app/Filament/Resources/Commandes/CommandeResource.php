@@ -20,12 +20,19 @@ class CommandeResource extends Resource
 {
     protected static ?string $model = Commande::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::ShoppingCart;
 
     public static function form(Schema $schema): Schema
     {
         return CommandeForm::configure($schema);
     }
+//  afficher le nombre des commandes dans le menu
+
+
+//     public static function getNavigationBadge(): ?string
+// {
+//     return static::getModel()::count();
+// }
 
     public static function infolist(Schema $schema): Schema
     {

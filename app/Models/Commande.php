@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes; 
 
 class Commande extends Model
 {
+    use SoftDeletes;
     protected $fillable = ['user_id', 'status','moyen_de_payement', 'montant_total','adresse_livraison','date_commande'];
 
     //RELATIONS
@@ -14,9 +16,9 @@ class Commande extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function commander_des_articles()
+    public function article_commandes()
     {
-        return $this->hasMany(Commander_des_articles::class);
+        return $this->hasMany(Article_commandes::class);
     }
 
     public function transactions()

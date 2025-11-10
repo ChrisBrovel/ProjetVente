@@ -1,12 +1,24 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Commander_des_articles extends Model
+class ArticleCommande extends Model
 {
+    
+    use SoftDeletes;
+
+    // Nom de la table dans la base de données
+    protected $table = 'article_commandes';
+
     protected $fillable = ['commande_id', 'produit_id', 'quantite', 'prix'];
+
+
+     // Colonnes considérées comme des dates
+    protected $dates = ['deleted_at'];
+
 
     //RELATIONS
     public function commande()

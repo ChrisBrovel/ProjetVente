@@ -29,10 +29,15 @@ class AdminPanelPanelProvider extends PanelProvider
             ->path('adminPanel')
             ->login()
             ->colors([
-                'primary' => Color::Purple,
+                'primary' => Color::Blue,
             ])
+            // ->sidebarCollapsibleOnDesktop()
+            // ->sidebarWidth('13rem')
+            // ->viteTheme('resources/css/app.css')
+            // ->spa()
 
-             ->brandLogo(asset('/images/télécharger.jpeg'))
+
+             ->brandLogo(asset('/images/ando.png'))
              ->brandLogoHeight('4rem')
             // ->brandName('Online Shop')
 
@@ -45,7 +50,7 @@ class AdminPanelPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 AccountWidget::class,
-                // FilamentInfoWidget::class,
+                 FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

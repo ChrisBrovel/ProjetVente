@@ -6,8 +6,11 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Tables\Filters\TrashedFilter;
+use Filament\Tables\Columns\ImageColumn;
 
 class UsersTable
 {
@@ -25,8 +28,10 @@ class UsersTable
                 TextColumn::make('role'),
                 TextColumn::make('address')
                     ->searchable(),
-                TextColumn::make('avatar')
-                    ->searchable(),
+                ImageColumn::make('avatar')
+                    ->label('Avatar')
+                    ->circular()
+                    ->size(50),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -37,11 +42,28 @@ class UsersTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                 TrashedFilter::make(),
             ])
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
+
+               
+     Action::make('delete')
+        ->label('Supprimer')
+        ->icon('heroicon-o-trash')
+        ->color('danger')
+        ->requiresConfirmation()
+        ->action(fn ($record) => $record->delete())
+        ->visible(fn ($record) => ! $record->trashed()),
+
+    Action::make('restore')
+        ->label('Restaurer')
+        ->icon('heroicon-o-arrow-path')
+        ->color('success')
+        ->action(fn ($record) => $record->restore())
+        ->visible(fn ($record) => $record->trashed()),
+
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

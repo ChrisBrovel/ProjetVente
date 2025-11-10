@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
+
 
 class UserAuthController extends Controller
 {
@@ -18,7 +20,8 @@ class UserAuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'nullable|string|email|max:255|unique:users',
             'phone' => 'nullable|string|max:20|unique:users',
-            'password' => 'required|string|min:6',
+            'password' => ['required', 'confirmed', Password::defaults()],
+            
             'role' => 'in:client,vendeur,admin'
         ]);
 
@@ -85,6 +88,24 @@ class UserAuthController extends Controller
         'token_type' => 'Bearer'
         ], 200);
     }
+
+
+
+    //FONCTION DECONNEXION (logout)
+    public function logout(Request $request)
+{
+    // Récupérer le token de l'utilisateur connecté
+    $token = $request->user()->token();
+
+    // Révoquer le token actuel (empêche son utilisation)
+    $token->revoke();
+
+    return response()->json([
+        'status' => true,
+        'message' => 'Déconnexion réussie avec succès.'
+    ]);
+}
+
 }
 
 

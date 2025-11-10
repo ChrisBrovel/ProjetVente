@@ -9,11 +9,15 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Laravel\Passport\Contracts\OAuthenticatable;
 use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Database\Eloquent\SoftDeletes; 
 use Filament\Panel;
 
 
 class User extends Authenticatable implements FilamentUser
 {
+
+     use SoftDeletes;
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasApiTokens,HasFactory, Notifiable;
 
@@ -28,6 +32,7 @@ class User extends Authenticatable implements FilamentUser
         'phone',
         'password',
         'role',
+        'avatar',
         
 
     ];
@@ -71,7 +76,25 @@ class User extends Authenticatable implements FilamentUser
     //Accès au panneau d'administration Filament
     
     public function canAccessPanel(Panel $panel): bool
-    {
-        return $this->email == 'waynembourou@gmail.com' ? true : false;
-    }
+{
+    return $this->role === 'admin';
 }
+
+//recupérer l'avatar
+public function getFilamentAvatarUrl(): ?string
+{
+    if ($this->avatar) {
+        // Si ton avatar est dans storage/app/public/avatars
+        return asset('storage/' . $this->avatar);
+    }
+
+    // fallback si aucun avatar défini
+    return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&background=random';
+}
+
+}
+
+
+
+
+

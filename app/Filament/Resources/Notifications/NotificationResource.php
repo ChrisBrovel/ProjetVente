@@ -20,7 +20,7 @@ class NotificationResource extends Resource
 {
     protected static ?string $model = Notification::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Bell;
 
     protected static ?string $recordTitleAttribute = 'Notifications';
 
@@ -29,6 +29,7 @@ class NotificationResource extends Resource
         return NotificationForm::configure($schema);
     }
 
+ 
     public static function infolist(Schema $schema): Schema
     {
         return NotificationInfolist::configure($schema);

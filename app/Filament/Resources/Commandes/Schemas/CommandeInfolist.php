@@ -14,7 +14,7 @@ class CommandeInfolist
                 TextEntry::make('user_id')
                     ->numeric(),
                 TextEntry::make('status'),
-                TextEntry::make('ùontant_total')
+                TextEntry::make('montant_total')
                     ->numeric(),
                 TextEntry::make('created_at')
                     ->dateTime(),

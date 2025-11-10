@@ -15,9 +15,7 @@ class ProduitForm
             ->components([
                 TextInput::make('titre')
                     ->required(),
-                Textarea::make('description')
-                    ->default(null)
-                    ->columnSpanFull(),
+               
                 TextInput::make('prix')
                     ->required()
                     ->numeric(),
@@ -30,9 +28,11 @@ class ProduitForm
                 TextInput::make('categorie_id')
                     ->required()
                     ->numeric(),
-                TextInput::make('vendeur_id')
-                    ->required()
-                    ->numeric(),
+
+                     Textarea::make('description')
+                    ->default(null)
+                    ->columnSpanFull(),
+                
             ]);
     }
 }

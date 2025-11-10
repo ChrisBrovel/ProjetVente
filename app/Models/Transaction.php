@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\SoftDeletes; 
 
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+    use SoftDeletes;
     protected $fillable = ['commande_id', 'montant', 'methode', 'status', 'transaction_ref'];
 
     //RELATIONS
@@ -14,3 +16,7 @@ class Transaction extends Model
         return $this->belongsTo(Commande::class);
     }
 }
+
+
+
+

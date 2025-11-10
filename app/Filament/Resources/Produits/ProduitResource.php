@@ -20,7 +20,7 @@ class ProduitResource extends Resource
 {
     protected static ?string $model = Produit::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::ShoppingBag;
 
     protected static ?string $recordTitleAttribute = 'Nom du produit';
 
@@ -28,6 +28,7 @@ class ProduitResource extends Resource
     {
         return ProduitForm::configure($schema);
     }
+
 
     public static function infolist(Schema $schema): Schema
     {

@@ -20,7 +20,8 @@ class CategorieResource extends Resource
 {
     protected static ?string $model = Categorie::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Tag;
+   
 
     protected static ?string $recordTitleAttribute = 'Nom';
 
@@ -29,6 +30,7 @@ class CategorieResource extends Resource
         return CategorieForm::configure($schema);
     }
 
+ 
     public static function infolist(Schema $schema): Schema
     {
         return CategorieInfolist::configure($schema);

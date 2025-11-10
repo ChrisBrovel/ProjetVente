@@ -20,8 +20,9 @@ class ProduitInfolist
                 ImageEntry::make('image'),
                 TextEntry::make('categorie_id')
                     ->numeric(),
-                TextEntry::make('vendeur_id')
-                    ->numeric(),
+
+                    TextEntry::make('description')->markdown(),
+                
                 TextEntry::make('created_at')
                     ->dateTime(),
                 TextEntry::make('updated_at')

@@ -15,6 +15,7 @@ class CommandeForm
                 TextInput::make('user_id')
                     ->required()
                     ->numeric(),
+                    //
                 Select::make('status')
                     ->options([
             'en_attente' => 'En attente',
@@ -22,11 +23,26 @@ class CommandeForm
             'livré' => 'Livré',
             'annulé' => 'Annulé',
         ])
-                    ->default('en_attente')
+            ->default('en_attente')
+            ->required(),
+
+//
+             Select::make('moyen_de_payement')
+                    ->options([
+            'carte_bancaire' => 'Carte bancaire',
+            'mobile_money' => 'Mobile Money',
+            
+        ])
+                    ->default('carte_bancaire')
                     ->required(),
-                TextInput::make('ùontant_total')
+//
+
+                TextInput::make('montant_total')
                     ->required()
                     ->numeric(),
+
+                    TextInput::make('adresse_livraison')
+                    ->required(),
             ]);
     }
 }

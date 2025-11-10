@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('quantite')->default(0);
             $table->string('image')->nullable();
             $table->foreignId('categorie_id')->constained('categories')->OnDelete('cascade');
-            $table->foreignId('vendeur_id')->constained('users')->OnDelete('cascade');
+            $table->foreignId('vendeur_id') ->nullable()->constained('users')->OnDelete('cascade');
             $table->timestamps();
         });
     }

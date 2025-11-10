@@ -16,4 +16,12 @@ class ListProduits extends ListRecords
             CreateAction::make(),
         ];
     }
+
+    protected function getTableWrapperHtmlAttributes(): array
+{
+    return [
+        'class' => 'w-full overflow-x-auto',
+    ];
+}
+
 }

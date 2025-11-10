@@ -20,7 +20,7 @@ class TransactionResource extends Resource
 {
     protected static ?string $model = Transaction::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::CurrencyDollar;
 
     protected static ?string $recordTitleAttribute = 'Référence de la  transaction';
 
@@ -29,6 +29,7 @@ class TransactionResource extends Resource
         return TransactionForm::configure($schema);
     }
 
+   
     public static function infolist(Schema $schema): Schema
     {
         return TransactionInfolist::configure($schema);
